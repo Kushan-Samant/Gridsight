@@ -39,6 +39,7 @@ export class ScreenAgent {
     try {
       switch (name) {
         case 'capture_screen':
+        case 'capture_screen_with_grid':
           return await this.captureScreen();
         case 'get_windows_ui_tree':
           return await this.getWindowsUiTree();
