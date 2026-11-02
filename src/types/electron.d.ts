@@ -19,6 +19,7 @@ declare global {
       moveMouse: (x: number, y: number) => Promise<{ ok: boolean; x: number; y: number; error: string | null }>;
       clickMouse: (button?: 'left' | 'right', double?: boolean) => Promise<{ ok: boolean; error: string | null }>;
       getCursorPoint: () => Promise<{ x: number; y: number }>;
+      getWindowsUITree: () => Promise<{ ok: boolean; tree?: string; error?: string }>;
       setPinned: (pinned: boolean) => Promise<boolean>;
     };
   }

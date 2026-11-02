@@ -206,6 +206,23 @@ async function clickNativeMouse(button = 'left', double = false) {
   return { ok: false, error: 'Clicking is currently supported on Windows and Linux only.' };
 }
 
+async function getWindowsUITree() {
+  if (process.platform !== 'win32') {
+    return { ok: false, error: 'UI Tree extraction is currently supported on Windows only.' };
+  }
+
+  const scriptPath = path.join(__dirname, 'GetForegroundUiTree.ps1');
+  return new Promise((resolve) => {
+    execFile('powershell.exe', ['-ExecutionPolicy', 'Bypass', '-File', scriptPath], (error, stdout, stderr) => {
+      if (error) {
+        resolve({ ok: false, error: error.message || stderr });
+      } else {
+        resolve({ ok: true, tree: stdout.trim() });
+      }
+    });
+  });
+}
+
 /* ------------------------------------------------------------------ */
 /* Screen capture                                                      */
 /* ------------------------------------------------------------------ */
@@ -304,6 +321,7 @@ app.whenReady().then(async () => {
   ipcMain.handle('agent:move-mouse', (_e, { x, y } = {}) => moveNativeCursor(x, y));
   ipcMain.handle('agent:click-mouse', (_e, { button, double } = {}) => clickNativeMouse(button, double));
   ipcMain.handle('agent:get-cursor', () => screen.getCursorScreenPoint());
+  ipcMain.handle('agent:get-windows-ui-tree', () => getWindowsUITree());
   ipcMain.handle('window:set-pinned', (_e, pinned) => {
     mainWindow?.setAlwaysOnTop(Boolean(pinned), 'floating');
     return mainWindow?.isAlwaysOnTop() ?? false;

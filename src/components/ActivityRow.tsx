@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AlertCircle, Check, ChevronDown, Eye, MousePointer2, MousePointerClick, ScanSearch } from 'lucide-react';
+import { AlertCircle, Check, ChevronDown, Eye, MousePointer2, MousePointerClick, ScanSearch, AlignLeft } from 'lucide-react';
 import type { AgentActivity } from '../agent/screenAgent';
 
 const ICONS = {
@@ -8,6 +8,7 @@ const ICONS = {
   move: MousePointer2,
   click: MousePointerClick,
   error: AlertCircle,
+  tree: AlignLeft,
 } as const;
 
 interface ActivityRowProps {
