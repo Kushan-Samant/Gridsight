@@ -11,5 +11,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   moveMouse: (x, y) => ipcRenderer.invoke('agent:move-mouse', { x, y }),
   clickMouse: (button, double) => ipcRenderer.invoke('agent:click-mouse', { button, double }),
   getCursorPoint: () => ipcRenderer.invoke('agent:get-cursor'),
+  getWindowsUITree: () => ipcRenderer.invoke('agent:get-windows-ui-tree'),
   setPinned: (pinned) => ipcRenderer.invoke('window:set-pinned', pinned),
 });
