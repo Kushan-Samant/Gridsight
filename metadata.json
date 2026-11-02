@@ -1,0 +1,6 @@
+{
+  "name": "GridSight Live — Gemini Live Screen & Mouse Agent",
+  "description": "Electron and web desktop agent powered by Gemini Live voice and vision that uses recursive 4-point coordinate grid zooming to move the mouse to exact screen targets.",
+  "requestFramePermissions": ["microphone", "display-capture"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
